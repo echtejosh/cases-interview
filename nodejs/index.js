@@ -7,19 +7,18 @@ app.use(json());
 // TODO: Reject the request if the name contains repeated adjacent characters.
 // Example: "Anna" is OK, but "Aanna" or "Aabb" should be rejected.
 function hasRepeatedAdjacentCharacters(str) {
+
     // runs at 0(n) because it runs once per character
     // so the size equals to the time linearly
+    // check through each pair in a string if they match, if no match is found
+    // then return false, if a match has been found, then it's true
     for (let i = 1; i < str.length; i++) {
 
         // check whether the characters that are adjacent are the same
         // checking from current index to the next assumed one
-
         if (str[i] === str[i - 1]) {
             return true;
         }
-
-        // Aaron
-        // Giddy
     }
 
     return false;
@@ -27,11 +26,6 @@ function hasRepeatedAdjacentCharacters(str) {
 
 app.post('/process', async (req, res) => {
     const {name, email} = req.body;
-
-    // test case 1.
-    // name === Gabby // true
-    // name === Anna // false
-    //
 
     // Add your validation logic here 👇
     if (hasRepeatedAdjacentCharacters(name)) {
