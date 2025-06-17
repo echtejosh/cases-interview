@@ -37,6 +37,11 @@ class UserController extends Controller
             $user->save();
         } catch (\Exception $e) {
             $logger->set($request, 'Request failed because an error occurred');
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Deactivation failed'
+            ]);
         }
 
         // on absolute certainty, return expected result
