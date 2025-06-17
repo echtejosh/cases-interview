@@ -13,12 +13,14 @@ class UserController extends Controller
         // and should only know the reference to it's interface
         // subtract logic from inappropriate domain
 
+        // logger is an example class being used for gdpr compliancy when
+        // interacting with user data, and thus must be logged
+        // gdpr article 5.2 for more details
         $logger = Logger::instance();
         $user = User::find($request->id);
 
         // this use case assumes that there's no fail condition
         // routines should fail gracefully
-
         if (!$user) {
             $logger->set($request, 'Request failed because the user cannot be found');
 
@@ -30,13 +32,14 @@ class UserController extends Controller
 
         $user->active = false;
 
-        // save failed
+        // save failed and thus must be handled gracefully again
         try {
             $user->save();
         } catch (\Exception $e) {
             $logger->set($request, 'Request failed because an error occurred');
         }
 
+        // on absolute certainty, return expected result
         return response()->json([
             'success' => true,
             'message' => 'User deactivated'
