@@ -8,7 +8,7 @@ app.use(json());
 // Example: "Anna" is OK, but "Aanna" or "Aabb" should be rejected.
 function hasRepeatedAdjacentCharacters(str) {
 
-    // runs at 0(n) because it runs once per character
+    // runs at O(n) because it runs once per character
     // so the size equals to the time linearly
     // check through each pair in a string if they match, if no match is found
     // then return false, if a match has been found, then it's true
