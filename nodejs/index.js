@@ -5,7 +5,6 @@ const app = express();
 app.use(json());
 
 // TODO: Reject the request if the name contains repeated adjacent characters.
-// Example: "Anna" is OK, but "Aanna" or "Aabb" should be rejected.
 function hasRepeatedAdjacentCharacters(str) {
 
     // runs at O(n) because it runs once per character
