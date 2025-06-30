@@ -15,7 +15,6 @@ class UserController extends Controller
 
         // logger is an example class being used for gdpr compliancy when
         // interacting with user data, and thus must be logged
-        // gdpr article 5.2 for more details
         $logger = Logger::instance();
         $user = User::find($request->id);
 
